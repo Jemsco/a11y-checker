@@ -39,7 +39,7 @@ npm run build
 Scan a sample HTML file:
 
 ```bash
- npm run start src/sample.html
+ a11y-checker path/to/your/file.html
 ```
 
 ## Testing
