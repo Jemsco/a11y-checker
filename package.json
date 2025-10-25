@@ -1,11 +1,11 @@
 {
   "name": "a11y-checker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "check html for accessibility issues",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "a11y-checker": "dist/index.js"
+    "a11y-checker": "./dist/index.js"
   },
   "repository": {
     "type": "git",

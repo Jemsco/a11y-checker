@@ -1,10 +1,9 @@
-import fs from "fs";
+import fs from "node:fs";
 import { JSDOM } from "jsdom";
-import axe from "axe-core"; // Keep this import
+import axe from "axe-core"; 
 import type { AxeResults } from "axe-core";
-import path from "path";
+import path from "node:path";
 
-// The main function signature remains the same
 export async function runAccessibilityScan(
   filePath: string
 ): Promise<AxeResults> {
@@ -23,11 +22,9 @@ export async function runAccessibilityScan(
 
   // Use the built-in JSDOM mechanism to run the axe source within the window context
   return new Promise<AxeResults>((resolve, reject) => {
-    // 1. Inject axe-core source into the virtual window
     window.eval(axe.source);
 
     // 2. Access the injected axe object via the window and run it
-    // The types here might need a slight cast depending on strictness
     (window as any).axe.run(
       window.document,
       {},

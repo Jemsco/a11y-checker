@@ -1,6 +1,6 @@
-import { exec } from "child_process";
-import path from "path";
-import fs from "fs";
+import { exec } from "node:child_process";
+import path from "node:path";
+import fs from "node:fs";
 
 const cliPath = path.join(__dirname, "../index");
 
@@ -14,7 +14,7 @@ describe("CLI tool", () => {
    } catch (e) {
      console.error("Failed to write temporary test file:", e);
      done(e);
-     return; // Exit the function if write fails
+     return; 
    }
 
      const command = `ts-node ${cliPath} "${testFile}"`;
@@ -22,25 +22,21 @@ describe("CLI tool", () => {
      exec(command, (err, stdout, stderr) => {
        try {
          if (fs.existsSync(testFile)) {
-           // Check if the file still exists
            fs.unlinkSync(testFile);
          }
-       } catch (cleanupErr) {
-         console.error("Cleanup failed:", cleanupErr);
+       } catch (error) {
+         console.error("Cleanup failed:", error);
        }
 
       if (err) {
-        // Log the error details so we can see what really happened in the child process
         console.log("stderr:", stderr);
         console.log("stdout:", stdout);
-        // If there's an error, pass it to done() to fail the test gracefully
         done(err); 
         return;
       }
 
-      // If successful:
       expect(stdout).toContain("Accessibility violations");
       done();
     });
-  }, 10000); // Set explicit timeout in ms
+  }, 10000); 
 });
