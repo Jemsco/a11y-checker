@@ -28,7 +28,7 @@ npm install
 Clone the repository and build the project:
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Jemsco/a11y-checker.git
 cd a11y-checker
 npm install
 npm run build
